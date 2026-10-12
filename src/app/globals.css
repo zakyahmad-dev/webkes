@@ -1,0 +1,190 @@
+@import "tailwindcss";
+
+/* ============================================================
+   HealthHub Design System — Calm Medical Minimalism
+   Satu warna jiwa (#176B67), surface putih, latar warm white.
+   Alias class lama dipetakan ke gaya baru agar halaman yang
+   belum dirombak tetap serasi tanpa pecah.
+   ============================================================ */
+
+@theme {
+  /* Latar & permukaan */
+  --color-cream: #FAFAF7;      /* alias latar (legacy naming) */
+  --color-paper: #FFFFFF;      /* surface */
+  --color-ivory: #F1F5F3;      /* pemisah sangat halus (legacy) */
+  --color-sandline: #E2E8E4;   /* border netral lembut */
+
+  /* Teks slate (Phase 3 token) */
+  --color-ink: #34434B;
+  --color-ink-soft: #5E7078;
+
+  /* Warna jiwa */
+  --color-teal-deep: #176B67;  /* primary */
+  --color-teal-ink: #0E4B48;   /* primary hover */
+  --color-teal-mist: #E8F3EF;  /* soft mint surface */
+  --color-teal-soft: #CFE4DE;  /* mint ke-2 */
+
+  /* Darurat & status */
+  --color-coral: #D9573B;      /* emergency / error */
+  --color-coral-deep: #B43A22;
+  --color-coral-soft: #FBE7E1;
+  --color-sun: #F2C14E;        /* rating star saja */
+  --color-sun-soft: #FBF3DA;
+
+  /* Tipografi */
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono-alt: "JetBrains Mono", ui-monospace, Menlo, monospace;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-cream);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection { background: var(--color-teal-mist); color: var(--color-teal-ink); }
+
+/* Focus state global — aksesibilitas keyboard */
+:focus-visible {
+  outline: 3px solid rgba(23, 107, 103, 0.35);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* ---------- Tekstur kertas sangat halus ---------- */
+.paper-grain {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+
+/* ============================ KARTU ============================ */
+.card {
+  background: var(--color-paper);
+  border: 1px solid var(--color-sandline);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(52, 67, 75, 0.05);
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.card:hover {
+  border-color: rgba(23, 107, 103, 0.45);
+  box-shadow: 0 8px 24px -12px rgba(23, 107, 103, 0.25);
+  transform: translateY(-2px);
+}
+
+/* Alias legacy → kartu kalem */
+.card-warm, .card-hand, .card-hand-static, .card-hand-teal {
+  background: var(--color-paper);
+  border: 1px solid var(--color-sandline);
+  border-radius: 14px;
+  box-shadow: 0 1px 2px rgba(52, 67, 75, 0.05);
+}
+.card-warm:hover {
+  border-color: rgba(23, 107, 103, 0.45);
+  box-shadow: 0 8px 24px -12px rgba(23, 107, 103, 0.25);
+  transform: translateY(-2px);
+}
+
+/* ============================ TOMBOL ============================ */
+.btn-primary, .btn-teal {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  border-radius: 12px; padding: .72rem 1.25rem; font-weight: 700; font-size: .85rem;
+  background: var(--color-teal-deep); color: #fff; border: none;
+  box-shadow: 0 1px 2px rgba(14, 75, 72, .25);
+  transition: background .15s ease, transform .15s ease;
+}
+.btn-primary:hover, .btn-teal:hover { background: var(--color-teal-ink); transform: translateY(-1px); }
+
+.btn-secondary, .btn-ghost-line, .btn-ink {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  border-radius: 12px; padding: .72rem 1.25rem; font-weight: 700; font-size: .85rem;
+  background: var(--color-paper); color: var(--color-ink);
+  border: 1px solid var(--color-sandline);
+  transition: border-color .15s ease, color .15s ease, background .15s ease, transform .15s ease;
+}
+.btn-secondary:hover, .btn-ghost-line:hover, .btn-ink:hover {
+  border-color: var(--color-teal-deep); color: var(--color-teal-deep); transform: translateY(-1px);
+}
+
+.btn-emergency, .btn-coral {
+  display: inline-flex; align-items: center; justify-content: center; gap: .5rem;
+  border-radius: 12px; padding: .72rem 1.25rem; font-weight: 700; font-size: .85rem;
+  background: var(--color-coral); color: #fff; border: none;
+  transition: background .15s ease, transform .15s ease;
+}
+.btn-emergency:hover, .btn-coral:hover { background: var(--color-coral-deep); transform: translateY(-1px); }
+
+.btn-xs { padding: .42rem .9rem; font-size: .74rem; border-radius: 10px; }
+.btn-sm { padding: .56rem 1.05rem; font-size: .8rem; }
+
+/* ============================ BADGE ============================ */
+.badge, .sticker {
+  display: inline-flex; align-items: center; gap: .4rem;
+  font-weight: 700; font-size: .7rem; letter-spacing: .02em;
+  background: var(--color-teal-mist); color: var(--color-teal-ink);
+  border: 1px solid var(--color-teal-soft);
+  border-radius: 999px; padding: .28rem .75rem;
+}
+.badge-sun, .sticker-sun { background: var(--color-sun-soft); color: #7A5A12; border-color: #EFDFAE; }
+.badge-coral, .sticker-coral { background: var(--color-coral-soft); color: var(--color-coral-deep); border-color: #F2CDBD; }
+
+/* ============================ LINK SOROT (kalem) ============================ */
+.squiggle { text-decoration: none; border-bottom: 2px solid var(--color-teal-deep); padding-bottom: 3px; color: var(--color-teal-deep); }
+.squiggle:hover { background: var(--color-teal-mist); }
+.marker { background: linear-gradient(to top, var(--color-sun-soft) 46%, transparent 46%); padding: 0 .08em; }
+.marker-mint { background: linear-gradient(to top, var(--color-teal-mist) 50%, transparent 50%); padding: 0 .08em; }
+
+/* ============================ INPUT ============================ */
+.input-calm, .input-warm {
+  width: 100%; background: var(--color-paper);
+  border: 1px solid var(--color-sandline); border-radius: 12px;
+  padding: .68rem 1rem; font-size: .875rem; outline: none;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+.input-calm:focus, .input-warm:focus {
+  border-color: var(--color-teal-deep);
+  box-shadow: 0 0 0 4px rgba(23, 107, 103, 0.10);
+}
+
+/* ============================ LAIN-LAIN ============================ */
+.dashed-rule { border: none; border-top: 1px dashed var(--color-sandline); }
+
+/* Tiket antrean (dipertahankan, dibuat kalem) */
+.ticket {
+  position: relative; background: var(--color-paper);
+  border: 1px solid var(--color-sandline); border-radius: 14px; overflow: hidden;
+}
+.ticket-cut { border-top: 1px dashed var(--color-sandline); }
+
+/* Marquee — tetap tersedia, enyapkan dengan prefers-reduced-motion */
+@keyframes marqueeX { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.marquee { display: flex; width: max-content; animation: marqueeX 40s linear infinite; }
+.marquee:hover { animation-play-state: paused; }
+
+@keyframes floaty { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.floaty { animation: floaty 6s ease-in-out infinite; }
+@keyframes spinSlow { from { transform: rotate(0); } to { transform: rotate(360deg); } }
+.animate-spin-slow { animation: spinSlow 9s linear infinite; }
+
+/* Tilt di-netralkan supaya halaman lama ikut kalem */
+.tilt-l, .tilt-r { transform: none; }
+
+/* Hierarki heading — dibatasi, konsisten */
+.display-xl { font-family: var(--font-display); font-weight: 600; letter-spacing: -.015em; line-height: 1.05; font-size: clamp(2rem, 4.6vw, 3.2rem); color: var(--color-ink); }
+.display-lg { font-family: var(--font-display); font-weight: 600; letter-spacing: -.01em; line-height: 1.1; font-size: clamp(1.6rem, 3.3vw, 2.35rem); color: var(--color-ink); }
+.display-md { font-family: var(--font-display); font-weight: 600; line-height: 1.15; font-size: 1.25rem; color: var(--color-ink); }
+.italic-hand { font-family: var(--font-display); font-style: italic; font-weight: 400; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: var(--color-cream); }
+::-webkit-scrollbar-thumb { background: var(--color-sandline); border-radius: 8px; border: 2px solid var(--color-cream); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-teal-deep); }
+
+/* Keyword aksesibilitas: matikan animasi saat diminta */
+@media (prefers-reduced-motion: reduce) {
+  .marquee, .floaty, .animate-spin-slow { animation: none; }
+  html { scroll-behavior: auto; }
+}
