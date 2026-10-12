@@ -1,0 +1,2 @@
+# Folder ini untuk aset statis (gambar, favicon, robots.txt, dsb).
+# Dibiarkan ada agar tahap COPY di Dockerfile tetap valid.
